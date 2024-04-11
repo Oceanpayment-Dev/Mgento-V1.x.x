@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category	Oceampayment
+ * @package 	Oceanpayment_GooglePay
+ * @copyright	Copyright (c) 2009 Oceanpayment,LLC. (http://www.oceampayment.com)
+ */
+-->
+<config>
+    <modules>
+        <Oceanpayment_OPGooglePay>
+            <version>1.9.2</version>
+        </Oceanpayment_OPGooglePay>
+    </modules>
+    <global>
+		  <helpers>
+		  	   <opgooglepay>
+		  	   	   <class>Oceanpayment_OPGooglePay_Helper</class>
+		  	   </opgooglepay>
+		  </helpers>	
+        <models>
+            <opgooglepay>
+                <class>Oceanpayment_OPGooglePay_Model</class>
+                <resourceModel>opgooglepay_mysql4</resourceModel>
+            </opgooglepay>
+            <opgooglepay_mysql4>
+                <class>Oceanpayment_OPGooglePay_Model_Mysql4</class>
+                <entities>
+                    <api_debug><table>opgooglepay_api_debug</table></api_debug>
+                </entities>
+            </opgooglepay_mysql4>
+        </models>
+        <resources>
+            <opgooglepay_setup>
+                <setup>
+                    <module>Oceanpayment_OPGooglePay</module>
+                    <class>Oceanpayment_OPGooglePay_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </opgooglepay_setup>
+            <opgooglepay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </opgooglepay_write>
+            <opgooglepay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </opgooglepay_read>
+        </resources>
+        <blocks>
+            <opgooglepay><class>Oceanpayment_OPGooglePay_Block</class></opgooglepay>
+    	</blocks>
+        <payment>
+            <opgooglepay_payment>
+                <languages>
+                    <FR>
+                        <code>FR</code>
+                        <name>Français</name>
+                    </FR>
+                    <EN>
+                        <code>EN</code>
+                        <name>Anglais</name>
+                    </EN>
+                    <ES>
+                        <code>ES</code>
+                        <name>Espagnol</name>
+                    </ES>
+                    <DE>
+                        <code>DE</code>
+                        <name>Allemand</name>
+                    </DE>
+                    <IT>
+                        <code>IT</code>
+                        <name>Italien</name>
+                    </IT>
+                    <NL>
+                        <code>NL</code>
+                        <name>Néerlandais</name>
+                    </NL>
+                </languages>
+            </opgooglepay_payment>
+        </payment>
+    </global>
+    <frontend>
+        <secure_url>
+            <opgooglepay_payment>/opgooglepay/payment</opgooglepay_payment>
+        </secure_url>
+        <routers>
+            <opgooglepay>
+                <use>standard</use>
+                <args>
+                    <module>Oceanpayment_OPGooglePay</module>
+                    <frontName>opgooglepay</frontName>
+                </args>
+            </opgooglepay>
+        </routers>
+        <translate>
+            <modules>
+                <Oceanpayment_OPGooglePay>
+                    <files>
+                        <default>Oceanpayment_OPGooglePay.csv</default>
+                    </files>
+                </Oceanpayment_OPGooglePay>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Oceanpayment_OPGooglePay>
+                    <files>
+                        <default>Oceanpayment_OPGooglePay.csv</default>
+                    </files>
+                </Oceanpayment_OPGooglePay>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <payment>
+            <oceanpayment_googlepay>
+                  <model>opgooglepay/payment</model>
+                  <title>Credit or Debit Card</title>
+                  <allowspecific>0</allowspecific>
+                  <transaction_type>0</transaction_type>
+                  <order_status>pending</order_status>
+                  <order_status_payment_accepted>processing</order_status_payment_accepted>
+                  <order_status_payment_refused>pending</order_status_payment_refused>
+                  <order_status_payment_pending>processing</order_status_payment_pending>
+                  <order_status_payment_risk>pending</order_status_payment_risk>
+                  <iframe_height>800</iframe_height>
+                  <send_email>1</send_email>
+                  <automatic_invoice>1</automatic_invoice>
+            </oceanpayment_googlepay>
+        </payment>
+    </default>
+</config>
