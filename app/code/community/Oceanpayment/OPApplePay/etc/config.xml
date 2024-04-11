@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category	Oceampayment
+ * @package 	Oceanpayment_ApplePay
+ * @copyright	Copyright (c) 2009 Oceanpayment,LLC. (http://www.oceampayment.com)
+ */
+-->
+<config>
+    <modules>
+        <Oceanpayment_OPApplePay>
+            <version>1.9.2</version>
+        </Oceanpayment_OPApplePay>
+    </modules>
+    <global>
+		  <helpers>
+		  	   <opapplepay>
+		  	   	   <class>Oceanpayment_OPApplePay_Helper</class>
+		  	   </opapplepay>
+		  </helpers>	
+        <models>
+            <opapplepay>
+                <class>Oceanpayment_OPApplePay_Model</class>
+                <resourceModel>opapplepay_mysql4</resourceModel>
+            </opapplepay>
+            <opapplepay_mysql4>
+                <class>Oceanpayment_OPApplePay_Model_Mysql4</class>
+                <entities>
+                    <api_debug><table>opapplepay_api_debug</table></api_debug>
+                </entities>
+            </opapplepay_mysql4>
+        </models>
+        <resources>
+            <opapplepay_setup>
+                <setup>
+                    <module>Oceanpayment_OPApplePay</module>
+                    <class>Oceanpayment_OPApplePay_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </opapplepay_setup>
+            <opapplepay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </opapplepay_write>
+            <opapplepay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </opapplepay_read>
+        </resources>
+        <blocks>
+            <opapplepay><class>Oceanpayment_OPApplePay_Block</class></opapplepay>
+    	</blocks>
+        <payment>
+            <opapplepay_payment>
+                <languages>
+                    <FR>
+                        <code>FR</code>
+                        <name>Français</name>
+                    </FR>
+                    <EN>
+                        <code>EN</code>
+                        <name>Anglais</name>
+                    </EN>
+                    <ES>
+                        <code>ES</code>
+                        <name>Espagnol</name>
+                    </ES>
+                    <DE>
+                        <code>DE</code>
+                        <name>Allemand</name>
+                    </DE>
+                    <IT>
+                        <code>IT</code>
+                        <name>Italien</name>
+                    </IT>
+                    <NL>
+                        <code>NL</code>
+                        <name>Néerlandais</name>
+                    </NL>
+                </languages>
+            </opapplepay_payment>
+        </payment>
+    </global>
+    <frontend>
+        <secure_url>
+            <opapplepay_payment>/opapplepay/payment</opapplepay_payment>
+        </secure_url>
+        <routers>
+            <opapplepay>
+                <use>standard</use>
+                <args>
+                    <module>Oceanpayment_OPApplePay</module>
+                    <frontName>opapplepay</frontName>
+                </args>
+            </opapplepay>
+        </routers>
+        <translate>
+            <modules>
+                <Oceanpayment_OPApplePay>
+                    <files>
+                        <default>Oceanpayment_OPApplePay.csv</default>
+                    </files>
+                </Oceanpayment_OPApplePay>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Oceanpayment_OPApplePay>
+                    <files>
+                        <default>Oceanpayment_OPApplePay.csv</default>
+                    </files>
+                </Oceanpayment_OPApplePay>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <payment>
+            <oceanpayment_applepay>
+                  <model>opapplepay/payment</model>
+                  <title>Credit or Debit Card</title>
+                  <allowspecific>0</allowspecific>
+                  <transaction_type>0</transaction_type>
+                  <order_status>pending</order_status>
+                  <order_status_payment_accepted>processing</order_status_payment_accepted>
+                  <order_status_payment_refused>pending</order_status_payment_refused>
+                  <order_status_payment_pending>processing</order_status_payment_pending>
+                  <order_status_payment_risk>pending</order_status_payment_risk>
+                  <iframe_height>800</iframe_height>
+                  <send_email>1</send_email>
+                  <automatic_invoice>1</automatic_invoice>
+            </oceanpayment_applepay>
+        </payment>
+    </default>
+</config>
