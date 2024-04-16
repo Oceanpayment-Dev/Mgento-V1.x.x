@@ -176,7 +176,7 @@ class Oceanpayment_OPApplePay_Model_Payment extends Mage_Payment_Model_Method_Ab
 		//securecode
 		$parameter['securecode']		= $validate_arr['securecode'];
 		//支付方式
-		$parameter['methods']			= 'Credit Card';
+		$parameter['methods']			= 'ApplePay';
 		//订单号
 		$parameter['order_number']		= $order->getRealOrderId();
 		//返回地址
