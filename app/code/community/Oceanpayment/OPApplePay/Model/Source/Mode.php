@@ -22,7 +22,6 @@ class Oceanpayment_OPApplePay_Model_Source_Mode
     public function toOptionArray()
     {
         return array(
-        	array('value' => '1', 'label' => Mage::helper('opapplepay')->__('Iframe')),
         	array('value' => '0', 'label' => Mage::helper('opapplepay')->__('Redirect')),
         );
     }
